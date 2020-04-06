@@ -12,13 +12,13 @@ from django.core.paginator import Paginator
 
 from django.db.models import Q
 
-def posts_list(request):
 
-    search_query = request.GET.get('search', '') #запрос GET с ключем search (из формы base.html),
+def posts_list(request):
+    search_query = request.GET.get('search', '')  # запрос GET с ключем search (из формы base.html),
     # либо с пустым ключем по дефолту
 
     if search_query:
-        posts = Post.objects.filter(Q(title__icontains = search_query) | Q(body__icontains = search_query))
+        posts = Post.objects.filter(Q(title__icontains=search_query) | Q(body__icontains=search_query))
         paginator = Paginator(posts, 30)
 
     else:
